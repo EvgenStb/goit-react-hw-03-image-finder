@@ -20,11 +20,16 @@ export default class Modal extends Component {
     }
     this.props.closeModal();
   };
+  closeByClick = e => {
+    if (e.currentTarget === e.target) {
+      this.props.closeModal();
+    }
+  };
 
   render() {
-    const { closeModal, tags, img } = this.props;
+    const { tags, img } = this.props;
     return createPortal(
-      <div className="Overlay" onClick={closeModal}>
+      <div className="Overlay" onClick={this.closeByClick}>
         <div className="Modal">
           <img src={img} alt={tags} />
         </div>
